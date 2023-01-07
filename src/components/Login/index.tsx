@@ -1,8 +1,12 @@
 import React from "react";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 
 const Login = () => {
-	return <View></View>;
+	return (
+		<View>
+			<Text>This is Login Screen!</Text>
+		</View>
+	);
 };
 
 export default Login;
