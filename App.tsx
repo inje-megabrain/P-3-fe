@@ -20,7 +20,7 @@ export default function App() {
 				<Stack.Screen
 					name="Login"
 					component={Login}
-					initialParams={{ name: "Login", userId: "Narin" }}
+					initialParams={{ name: "Login", userId: "User" }}
 					options={{ title: "로그인" }}
 				/>
 			</Stack.Navigator>

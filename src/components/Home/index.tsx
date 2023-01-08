@@ -22,7 +22,7 @@ const Home = ({ navigation, route }: Props) => {
 				label="Login"
 				style={{ backgroundColor: "pink", width: "50%" }}
 				onPress={() =>
-					navigation.navigate("Login", { name: route.name, userId: "Narin" })
+					navigation.navigate("Login", { name: route.name, userId: "User" })
 				}
 			></Button>
 		</View>
