@@ -53,7 +53,7 @@ const Login = () => {
 				<PasswordContainer
 					onPress={() => {
 						console.log(auth);
-						login();
+						login("이름", "123123");
 						console.log("비밀번호 찾기");
 					}}
 				>
