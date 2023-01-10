@@ -1,8 +1,13 @@
 import { atom } from "recoil";
 
-const authState = atom({
+export interface IAuthTypes {
+	email: string;
+	password: string;
+}
+
+const authState = atom<IAuthTypes[]>({
 	key: "authState",
-	default: null,
+	default: [],
 });
 
 export default authState;

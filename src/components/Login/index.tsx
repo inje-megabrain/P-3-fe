@@ -5,6 +5,8 @@ import React from "react";
 import styled from "styled-components/native";
 import Input from "../Input";
 import Button from "../Button";
+import authState, { IAuthTypes } from "../../recoil/auth";
+import { useRecoilState } from "recoil";
 
 const Container = styled.SafeAreaView`
 	flex: 1;
@@ -29,6 +31,7 @@ const PasswordContainer = styled.Text`
 
 const Login = () => {
 	//const { name, userId } = route.params;
+	const [auth, setAuth] = useRecoilState<IAuthTypes[]>(authState);
 	return (
 		<Container>
 			<FormContainer>
@@ -42,11 +45,13 @@ const Login = () => {
 					style={{ marginBottom: 24 }}
 					label="Login"
 					onPress={() => {
+						setAuth([{ email: "skfls", password: "123123" }]);
 						console.log("버튼 눌렸다!");
 					}}
 				/>
 				<PasswordContainer
 					onPress={() => {
+						console.log(auth);
 						console.log("비밀번호 찾기");
 					}}
 				>
