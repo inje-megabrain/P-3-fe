@@ -12,7 +12,7 @@ const Home = ({ navigation, route }: Props) => {
 	//const navigation = useNavigation();
 	return (
 		<View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-			<Text>Home Screen</Text>
+			<Text>P-3 Project {"\n"}</Text>
 			{/* <TouchableOpacity
 				onPress={() => navigation.navigate("Login", { name: route.name })}
 			>
