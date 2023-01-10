@@ -7,6 +7,7 @@ import Input from "../Input";
 import Button from "../Button";
 import authState, { IAuthTypes } from "../../recoil/auth";
 import { useRecoilState } from "recoil";
+import login from "../../apis/login";
 
 const Container = styled.SafeAreaView`
 	flex: 1;
@@ -52,6 +53,7 @@ const Login = () => {
 				<PasswordContainer
 					onPress={() => {
 						console.log(auth);
+						login();
 						console.log("비밀번호 찾기");
 					}}
 				>
