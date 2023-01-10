@@ -24,7 +24,18 @@ const Home = ({ navigation, route }: Props) => {
 				onPress={() => {
 					navigation.navigate("Login", { name: route.name, userId: "User" });
 				}}
-			></Button>
+			/>
+			<Button
+				label="SignUp"
+				style={{ backgroundColor: "pink", width: "50%" }}
+				onPress={() => {
+					navigation.navigate("SignUp", {
+						name: route.name,
+						userId: "User",
+						password: "123123",
+					});
+				}}
+			/>
 		</View>
 	);
 };
