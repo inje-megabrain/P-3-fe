@@ -17,11 +17,11 @@ const InputField = styled.TextInput`
 
 interface Props {
 	placeholder: string;
-	keyboardType: "default" | "email-address" | "numeric" | "phone-pad";
-	secureTextEntry: boolean;
+	keyboardType?: "default" | "email-address" | "numeric" | "phone-pad";
+	secureTextEntry?: boolean;
 	style: object;
-	clearMode: boolean;
-	onChangeText: (text: string) => void;
+	clearMode?: boolean;
+	onChangeText?: (text: string) => void;
 }
 
 const Input = ({
