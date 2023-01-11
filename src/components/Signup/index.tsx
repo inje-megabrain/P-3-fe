@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import styled from "styled-components/native";
 import signup from "../../apis/signup";
 import Button from "../Button";
@@ -17,15 +17,24 @@ const FormContainer = styled.View`
 `;
 
 const SignUp = () => {
+	const [nickname, setNickname] = useState("");
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
+
 	return (
 		<Container>
 			<FormContainer>
-				<Input style={{ marginBottom: 16 }} placeholder="NickName" />
-				<Input style={{ marginBottom: 16 }} placeholder="ID" />
+				<Input
+					style={{ marginBottom: 16 }}
+					placeholder="NickName"
+					value={nickname}
+				/>
+				<Input style={{ marginBottom: 16 }} placeholder="ID" value={username} />
 				<Input
 					style={{ marginBottom: 16 }}
 					placeholder="PASSWORD"
 					secureTextEntry={true}
+					value={password}
 				/>
 				<Button
 					style={{ marginBottom: 24 }}

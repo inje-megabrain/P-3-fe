@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 //import { View, Text } from "react-native";
 //import { NativeStackScreenProps } from "@react-navigation/native-stack";
 //import { RootStackParamList } from "../types";
@@ -32,15 +32,19 @@ const PasswordContainer = styled.Text`
 
 const Login = () => {
 	//const { name, userId } = route.params;
+
+	const [username, setUsername] = useState("");
+	const [password, setPassword] = useState("");
 	const [auth, setAuth] = useRecoilState<IAuthTypes[]>(authState);
 	return (
 		<Container>
 			<FormContainer>
-				<Input style={{ marginBottom: 16 }} placeholder="ID" />
+				<Input style={{ marginBottom: 16 }} placeholder="ID" value={username} />
 				<Input
 					style={{ marginBottom: 16 }}
 					placeholder="PASSWORD"
 					secureTextEntry={true}
+					value={password}
 				/>
 				<Button
 					style={{ marginBottom: 24 }}
