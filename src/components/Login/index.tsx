@@ -50,14 +50,14 @@ const Login = () => {
 					style={{ marginBottom: 24 }}
 					label="Login"
 					onPress={() => {
-						setAuth([{ email: "skfls", password: "123123" }]);
+						setAuth([{ email: "test", password: "123" }]);
 						console.log("버튼 눌렸다!");
 					}}
 				/>
 				<PasswordContainer
 					onPress={() => {
 						console.log(auth);
-						login("이름", "123123");
+						login("test", "123");
 						console.log("비밀번호 찾기");
 					}}
 				>

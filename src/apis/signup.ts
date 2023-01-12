@@ -14,6 +14,7 @@ export default function signup(nick: string, name: string, pw: string) {
 			})
 			.catch((err) => {
 				console.log("Error", err);
+				console.log(nick, name, pw);
 			});
 	});
 }
