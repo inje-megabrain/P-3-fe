@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState } from "react";
 import styled from "styled-components/native";
 import signup from "../../apis/signup";
 import Button from "../Button";
@@ -21,6 +21,18 @@ const SignUp = () => {
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
+	const onChangeNick = (text: string) => {
+		setNickname(text);
+	};
+
+	const onChangeName = (text: string) => {
+		setUsername(text);
+	};
+
+	const onChangePw = (text: string) => {
+		setPassword(text);
+	};
+
 	return (
 		<Container>
 			<FormContainer>
@@ -28,19 +40,27 @@ const SignUp = () => {
 					style={{ marginBottom: 16 }}
 					placeholder="NickName"
 					value={nickname}
+					onChangeText={onChangeNick}
 				/>
-				<Input style={{ marginBottom: 16 }} placeholder="ID" value={username} />
+				<Input
+					style={{ marginBottom: 16 }}
+					placeholder="ID"
+					value={username}
+					onChangeText={onChangeName}
+				/>
 				<Input
 					style={{ marginBottom: 16 }}
 					placeholder="PASSWORD"
 					secureTextEntry={true}
 					value={password}
+					onChangeText={onChangePw}
 				/>
 				<Button
 					style={{ marginBottom: 24 }}
 					label="SignUp"
 					onPress={() => {
-						signup("닉네임", "이름", "123123");
+						signup(nickname, username, password);
+						console.log(nickname, username, password);
 						console.log("회원가입을 해보쟈");
 					}}
 				/>
