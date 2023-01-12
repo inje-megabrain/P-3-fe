@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-//import { View, Text } from "react-native";
+import { Text } from "react-native";
 //import { NativeStackScreenProps } from "@react-navigation/native-stack";
 //import { RootStackParamList } from "../types";
 import styled from "styled-components/native";
@@ -35,29 +35,61 @@ const Login = () => {
 
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
+
+	const [nameMsg, setNameMsg] = useState("");
+	const [pwMsg, setPwMsg] = useState("");
+
 	const [auth, setAuth] = useRecoilState<IAuthTypes[]>(authState);
+
+	const onChangeName = (text: string) => {
+		if (text.length < 2 || text.length > 5) {
+			setNameMsg("2~5글자로 입력");
+		} else {
+			setNameMsg("");
+		}
+		setUsername(text);
+	};
+
+	const onChangePw = (text: string) => {
+		const passwordRegex =
+			/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{6,25}$/;
+		if (!passwordRegex.test(text)) {
+			setPwMsg("숫자, 영문자, 특수문자 조합으로 6자 이상 입력");
+		} else {
+			setPwMsg("");
+		}
+		setPassword(text);
+	};
 	return (
 		<Container>
 			<FormContainer>
-				<Input style={{ marginBottom: 16 }} placeholder="ID" value={username} />
+				<Input
+					style={{ marginBottom: 16 }}
+					placeholder="ID"
+					value={username}
+					onChangeText={onChangeName}
+				/>
+				<Text style={{ color: "white", marginBottom: 8 }}>{nameMsg}</Text>
 				<Input
 					style={{ marginBottom: 16 }}
 					placeholder="PASSWORD"
 					secureTextEntry={true}
 					value={password}
+					onChangeText={onChangePw}
 				/>
+				<Text style={{ color: "white", marginBottom: 8 }}>{pwMsg}</Text>
 				<Button
 					style={{ marginBottom: 24 }}
 					label="Login"
 					onPress={() => {
-						setAuth([{ email: "test", password: "123" }]);
+						setAuth([{ email: "skfls", password: "123123" }]);
 						console.log("버튼 눌렸다!");
 					}}
 				/>
 				<PasswordContainer
 					onPress={() => {
 						console.log(auth);
-						login("test", "123");
+						login(username, password);
 						console.log("비밀번호 찾기");
 					}}
 				>

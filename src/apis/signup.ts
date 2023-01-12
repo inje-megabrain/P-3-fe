@@ -13,8 +13,8 @@ export default function signup(nick: string, name: string, pw: string) {
 				console.log(v.data);
 			})
 			.catch((err) => {
-				console.log("Error", err);
 				console.log(nick, name, pw);
+				console.log("Error", err);
 			});
 	});
 }
