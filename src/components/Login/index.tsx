@@ -64,14 +64,14 @@ const Login = () => {
 		<Container>
 			<FormContainer>
 				<Input
-					style={{ marginBottom: 16 }}
+					style={{ marginBottom: 8 }}
 					placeholder="ID"
 					value={username}
 					onChangeText={onChangeName}
 				/>
 				<Text style={{ color: "white", marginBottom: 8 }}>{nameMsg}</Text>
 				<Input
-					style={{ marginBottom: 16 }}
+					style={{ marginBottom: 8 }}
 					placeholder="PASSWORD"
 					secureTextEntry={true}
 					value={password}
@@ -83,14 +83,14 @@ const Login = () => {
 					label="Login"
 					onPress={() => {
 						setAuth([{ email: username, password: password }]);
-						console.log("버튼 눌렸다!");
+						login(password, username);
+						console.log("로그인!");
 					}}
 				/>
 				<PasswordContainer
 					onPress={() => {
-						//console.log(auth);
-						login(password, username);
 						console.log("비밀번호 찾기");
+						console.log(auth);
 					}}
 				>
 					{" "}
