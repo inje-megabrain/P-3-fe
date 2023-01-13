@@ -82,14 +82,14 @@ const Login = () => {
 					style={{ marginBottom: 24 }}
 					label="Login"
 					onPress={() => {
-						setAuth([{ email: "skfls", password: "123123" }]);
+						setAuth([{ email: username, password: password }]);
 						console.log("버튼 눌렸다!");
 					}}
 				/>
 				<PasswordContainer
 					onPress={() => {
-						console.log(auth);
-						login(username, password);
+						//console.log(auth);
+						login(password, username);
 						console.log("비밀번호 찾기");
 					}}
 				>
