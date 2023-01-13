@@ -22,6 +22,7 @@ interface Props {
 	style: object;
 	clearMode?: boolean;
 	onChangeText?: (text: string) => void;
+	value: string;
 }
 
 const Input = ({
@@ -31,6 +32,7 @@ const Input = ({
 	style,
 	clearMode,
 	onChangeText,
+	value,
 }: Props) => {
 	return (
 		<Container style={style}>
@@ -45,6 +47,7 @@ const Input = ({
 				placeholder={placeholder}
 				clearButtonMode={clearMode ? "while-editing" : "never"}
 				onChangeText={onChangeText}
+				value={value}
 			/>
 		</Container>
 	);
