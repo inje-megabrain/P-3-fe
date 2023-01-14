@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { Text } from "react-native";
-//import { NativeStackScreenProps } from "@react-navigation/native-stack";
-//import { RootStackParamList } from "../types";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../types";
 import styled from "styled-components/native";
 import Input from "../Input";
 import Button from "../Button";
 import authState, { IAuthTypes } from "../../recoil/auth";
 import { useRecoilState } from "recoil";
 import login from "../../apis/login";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Container = styled.SafeAreaView`
 	flex: 1;
@@ -28,9 +29,9 @@ const PasswordContainer = styled.Text`
 	text-align: center;
 `;
 
-//type Props = NativeStackScreenProps<RootStackParamList, "Login">;
+type Props = NativeStackScreenProps<RootStackParamList, "Login">;
 
-const Login = () => {
+const Login = ({ navigation }: Props) => {
 	//const { name, userId } = route.params;
 
 	const [username, setUsername] = useState("");
@@ -60,6 +61,7 @@ const Login = () => {
 		}
 		setPassword(text);
 	};
+
 	return (
 		<Container>
 			<FormContainer>
@@ -83,7 +85,13 @@ const Login = () => {
 					label="Login"
 					onPress={() => {
 						setAuth([{ email: username, password: password }]);
-						login(password, username);
+						login(password, username).then((v: any) => {
+							if (v.status == 200) {
+								//console.log(v.data.token);
+								AsyncStorage.setItem("AccessToken", v.data.token); // 토큰 저장
+								navigation.navigate("Home");
+							}
+						});
 						console.log("로그인!");
 					}}
 				/>

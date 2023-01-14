@@ -5,7 +5,7 @@ export default function login(pw: string, name: string) {
 		paxios
 			.post("/login", { username: name, password: pw })
 			.then((v) => {
-				resolve(v.data);
+				resolve(v);
 				console.log(v.data);
 				console.log("로그인 됐따");
 			})
