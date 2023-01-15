@@ -6,12 +6,18 @@ import Login from "./Login";
 import Home from "./Home";
 import SignUp from "./Signup";
 import { RootStackParamList } from "./types";
+import SplashScreen from "./Splash";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 function Main() {
 	return (
 		<NavigationContainer>
-			<Stack.Navigator initialRouteName="Home">
+			<Stack.Navigator initialRouteName="Splash">
+				<Stack.Screen
+					name="Splash"
+					component={SplashScreen}
+					options={{ title: "Splash" }}
+				/>
 				<Stack.Screen
 					name="Home"
 					component={Home}
