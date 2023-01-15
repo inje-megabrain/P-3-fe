@@ -25,9 +25,13 @@ const SplashScreen = ({ navigation }: Props) => {
 		const token = await AsyncStorage.getItem("AccessToken");
 		console.log(token);
 		if (!token) {
+			console.log("if");
 			navigation.replace("Login", { name: "w", userId: "id" });
-		} else {
+		} else if (token) {
+			console.log("else if");
 			navigation.replace("Home");
+		} else {
+			console.log("else");
 		}
 	};
 	return (

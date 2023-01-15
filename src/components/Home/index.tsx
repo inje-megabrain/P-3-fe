@@ -5,6 +5,7 @@ import Button from "../Button";
 //import { useNavigation } from "@react-navigation/native";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 
@@ -34,6 +35,15 @@ const Home = ({ navigation, route }: Props) => {
 						userId: "User",
 						password: "123123",
 					});
+				}}
+			/>
+			<Button
+				label="Logout"
+				style={{ backgroundColor: "pink", width: "50%" }}
+				onPress={() => {
+					AsyncStorage.removeItem("AccessToken");
+					console.log("로그아웃 (토큰 삭제)");
+					navigation.navigate("Splash");
 				}}
 			/>
 		</View>
