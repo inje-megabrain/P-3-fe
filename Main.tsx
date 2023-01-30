@@ -1,17 +1,24 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import Login from "./Login";
-import Home from "./Home";
-import { RootStackParamList } from "./types";
-import SignUp from "./Signup";
+// import { createNativeStackNavigator } from "@react-navigation/native-stack";
+// import Login from "./src/screens/LoginScreen";
+// import Home from "./src/screens/HomeScreen";
+// import SignUp from "./src/screens/SignupScreen";
+// import { RootStackParamList } from "./src/types";
+// import SplashScreen from "./src/screens/SplashScreen";
+import AppNavigator from "./src/navigator/AppNavigator";
 
-const Stack = createNativeStackNavigator<RootStackParamList>();
 function Main() {
 	return (
 		<NavigationContainer>
-			<Stack.Navigator initialRouteName="Home">
+			<AppNavigator />
+			{/* <Stack.Navigator initialRouteName="Splash">
+				<Stack.Screen
+					name="Splash"
+					component={SplashScreen}
+					options={{ title: "Splash" }}
+				/>
 				<Stack.Screen
 					name="Home"
 					component={Home}
@@ -28,7 +35,7 @@ function Main() {
 					component={SignUp}
 					options={{ title: "회원가입" }}
 				/>
-			</Stack.Navigator>
+			</Stack.Navigator> */}
 			<StatusBar style="auto" />
 		</NavigationContainer>
 	);
