@@ -6,7 +6,7 @@ import React from "react";
 // import Home from "./src/components/Home";
 // import { RootStackParamList } from "./src/components/types";
 import { RecoilRoot } from "recoil";
-import Main from "./src/components/main";
+import Main from "./Main";
 
 //const Stack = createNativeStackNavigator<RootStackParamList>();
 

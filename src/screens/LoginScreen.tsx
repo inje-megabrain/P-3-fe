@@ -1,9 +1,14 @@
 import React, { useState } from "react";
-import styled from "styled-components/native";
-import signup from "../../apis/signup";
-import Button from "../Button";
-import Input from "../Input";
 import { Text } from "react-native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { SignParamList } from "../types/SignParamList";
+import styled from "styled-components/native";
+import Input from "../components/Input";
+import Button from "../components/Button";
+import authState, { IAuthTypes } from "../recoil/auth";
+import { useRecoilState } from "recoil";
+import login from "../apis/login";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Container = styled.SafeAreaView`
 	flex: 1;
@@ -17,23 +22,26 @@ const FormContainer = styled.View`
 	padding: 40px;
 `;
 
-const SignUp = () => {
-	const [nickname, setNickname] = useState("");
+const PasswordContainer = styled.Text`
+	width: 100%;
+	font-size: 12px;
+	color: #ffffff;
+	text-align: center;
+	margin-bottom: 22px;
+`;
+
+type Props = NativeStackScreenProps<SignParamList, "Login">;
+
+const LoginScreen = ({ navigation }: Props) => {
+	//const { name, userId } = route.params;
+
 	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 
-	const [nickMsg, setNickMsg] = useState("");
 	const [nameMsg, setNameMsg] = useState("");
 	const [pwMsg, setPwMsg] = useState("");
 
-	const onChangeNick = (text: string) => {
-		if (text.length < 2 || text.length > 5) {
-			setNickMsg("2~5글자로 입력");
-		} else {
-			setNickMsg("");
-		}
-		setNickname(text);
-	};
+	const [auth, setAuth] = useRecoilState<IAuthTypes[]>(authState);
 
 	const onChangeName = (text: string) => {
 		if (text.length < 2 || text.length > 5) {
@@ -60,13 +68,6 @@ const SignUp = () => {
 			<FormContainer>
 				<Input
 					style={{ marginBottom: 8 }}
-					placeholder="NickName"
-					value={nickname}
-					onChangeText={onChangeNick}
-				/>
-				<Text style={{ color: "white", marginBottom: 8 }}>{nickMsg}</Text>
-				<Input
-					style={{ marginBottom: 8 }}
 					placeholder="ID"
 					value={username}
 					onChangeText={onChangeName}
@@ -82,11 +83,33 @@ const SignUp = () => {
 				<Text style={{ color: "white", marginBottom: 8 }}>{pwMsg}</Text>
 				<Button
 					style={{ marginBottom: 24 }}
+					label="Login"
+					onPress={() => {
+						setAuth([{ email: username, password: password }]);
+						login(password, username).then((v: any) => {
+							if (v.status == 200) {
+								//console.log(v.data.token);
+								AsyncStorage.setItem("AccessToken", v.data.token); // 토큰 저장
+								navigation.navigate("Home");
+							}
+						});
+						console.log("로그인!");
+					}}
+				/>
+				<PasswordContainer
+					onPress={() => {
+						console.log("비밀번호 찾기");
+						console.log(auth);
+					}}
+				>
+					{" "}
+					비밀번호 찾기{" "}
+				</PasswordContainer>
+				<Button
+					style={{ marginBottom: 24 }}
 					label="SignUp"
 					onPress={() => {
-						signup(nickname, username, password);
-						//console.log(nickname, username, password);
-						console.log("회원가입을 해보쟈");
+						navigation.navigate("SignUp");
 					}}
 				/>
 			</FormContainer>
@@ -94,4 +117,4 @@ const SignUp = () => {
 	);
 };
 
-export default SignUp;
+export default LoginScreen;
